@@ -7,6 +7,7 @@ const port = process.env.PORT;
 const cors = require("cors");
 const { userRouter } = require("./routes/user.route");
 const { productRouter } = require("./routes/product.route");
+const { connection } = require("./db");
 app.use(
   cors({
     origin: "*",
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 
 app.listen(port, async () => {
   try {
+    await connection
     console.log("Connected to DB");
     console.log(`Server is Running at ${port}`);
   } catch (error) {
